@@ -3,7 +3,7 @@
 resource "aws_vpc" "my_vpc" {
     cidr_block              = "${var.vpc-cidr}"
     instance_tenancy        = "default"
-    enable_dns_hostnames    = true
+    enable_dns_hostnames    = "${var.vpc-enable-dns-host-names}"
 
     tags     = {
       "Name" = "Terraform_vpc"
@@ -26,7 +26,7 @@ resource "aws_subnet" "public-subnet" {
   vpc_id                    = aws_vpc.my_vpc.id
   cidr_block                = "${var.public-subnet-cidr}"
   availability_zone         = "${var.public-subnet-availability_zone}"
-  map_public_ip_on_launch   = true
+  map_public_ip_on_launch   = "${var.public-subnet-public-ip-mapping}"
 
   tags     = {
     "Name" = "Public Subnet"
@@ -63,7 +63,7 @@ resource "aws_subnet" "private_subnet-1" {
   vpc_id                     = aws_vpc.my_vpc.id
   cidr_block                 = "${var.private-subnet-1-cidr}"
   availability_zone          = "${var.private-subnet-1-availability_zone}"
-  map_public_ip_on_launch    = false
+  map_public_ip_on_launch    =  "${var.private-subnet-public-ip-mapping}"
  
   tags = {
     "Name" = "Private Subnet 1 | App Tier"
@@ -76,6 +76,7 @@ resource "aws_subnet" "private_subnet-2" {
   cidr_block            = "${var.private-subnet-2-cidr}"
   vpc_id                = aws_vpc.my_vpc.id
   availability_zone     = "${var.private-subnet-2-availability_zone}"
+  map_public_ip_on_launch = "${var.private-subnet-public-ip-mapping}"
   
   tags     = {
     "Name" = "Private Subnet 2 | database Tier"
