@@ -1,5 +1,6 @@
 provider "aws" {
-    AWS_ACCESS_KEY_ID="${var.access_key}"
-    AWS_SECRET_ACCESS_KEY="${var.access_key}"
-    AWS_REGION="${var.AWS_REGION}"
+  region = "${var.aws_region}"
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
 }
+
