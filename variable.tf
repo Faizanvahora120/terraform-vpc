@@ -4,16 +4,6 @@ variable "aws_region" {
   type = string
 }
 
-variable "aws_access_key" {
-    description = "adding access key"
-    type = string
-}
-
-variable "aws_secret_key" {
-    description = "adding secret key"
-    type        = string
-}
-
 variable "vpc-cidr" {
     default     =  "10.0.0.0/16"
     description = "VPC CIDR Block"
