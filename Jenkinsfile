@@ -1,8 +1,14 @@
 pipeline {
     agent any
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-key-id')
+    }
+
          tools {
                  terraform 'terraform'
                }
+               
                 stages{
                     stage('Checkout'){
                         steps{
@@ -11,7 +17,6 @@ pipeline {
                     }
                     stage('Terraform init'){
                         steps{
-                            
                             sh 'terraform init'
                         }
                     }
@@ -22,13 +27,21 @@ pipeline {
                     }
                      stage('Terraform plan'){
                         steps{
-                           
-                            sh 'terraform plan'
+                              sh """
+                              export AWS_ACCESS_KEY_ID=env.AWS_ACCESS_KEY_ID
+                              export AWS_SECRET_ACCESS_KEY=env.AWS_SECRET_ACCESS_KEY
+                              terraform plan
+                              """
+                            
                         }
                     }
                      stage('Terraform apply'){
                         steps{
-                            sh 'terraform apply --auto-approve'
+                             sh """
+                              export AWS_ACCESS_KEY_ID=env.AWS_ACCESS_KEY_ID
+                              export AWS_SECRET_ACCESS_KEY=env.AWS_SECRET_ACCESS_KEY
+                              terraform apply --auto-approve --var=$AWS_ACCESS_KEY_ID --var=$AWS_SECRET_ACCESS_KEY
+                              """
                         }
                     }
                     
