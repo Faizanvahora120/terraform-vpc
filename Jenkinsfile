@@ -39,7 +39,7 @@ pipeline {
                               export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
                               export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
                               terraform workspace select dev
-                              terraform plan --auto-approve --var-file=dev.tfvars
+                              terraform plan --var-file=dev.tfvars
                               """
                         }
                     }
@@ -70,7 +70,7 @@ pipeline {
                               export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
                               export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
                               terraform workspace select prod
-                              terraform plan --auto-approve --var-file=prod.tfvars
+                              terraform plan --var-file=prod.tfvars
                               """
                         }
                     }
