@@ -1,0 +1,13 @@
+aws_region = "us-east-2"
+vpc-cidr   = "10.0.0.0/20"
+vpc-enable-dns-host-names = "true"
+public-subnet-cidr = "10.0.0.0/24"
+public-subnet-availability_zone = "us-east-2a"
+private-subnet-1-cidr = "10.0.1.0/24"
+private-subnet-private-ip-mapping = false
+private-subnet-1-availability_zone = "us-east-2a"
+private-subnet-2-availability_zone = "us-east-2b"
+private-subnet-2-cidr = "10.0.2.0/24"
+public-route-table-cidr-block = "0.0.0.0/0"
+public-subnet-public-ip-mapping = true
+private-subnet-public-ip-mapping = false
