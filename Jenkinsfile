@@ -75,7 +75,7 @@ pipeline {
                         }
                     }
 
-                    stage('Terraform apply prod'){
+                    stage('Terraform apply for Prod Env'){
                          when {
                              expression { 
                                     return params.ENVIRONMENT == 'PROD'
